@@ -21,11 +21,17 @@ module Jekyll
 			else	
 				result = JSON.parse(resp.body)
 				"<figure class=\"xkcd-embed\">
-				<a href=\"" + url + "\"> 
-				<img src=\"" + result["img"] + 
-					"\"  title=\"" + CGI::escapeHTML(result["alt"]) + 
-					"\" alt=\"" + url + "\"></a>
-				<figcaption> \"" + CGI::escapeHTML(result["title"]) + "\" - created by <a href=\"http://xkcd.com\">xkcd</a></figcaption></figure>"
+					<a href=\"" + url + "\">" + 
+						"<img" + 
+							"src=\"" + result["img"] + "\"" + 
+							"title=\"" + CGI::escapeHTML(result["alt"]) + "\"" + 
+							"alt=\"" + url + 
+						"\">" +
+					"</a>" + 
+					"<figcaption>" +
+						"\"" + CGI::escapeHTML(result["title"]) + "\" - created by <a href=\"http://xkcd.com\">xkcd</a>" + 
+					"</figcaption>" +
+				"</figure>"
 			end
 		end
 	end
