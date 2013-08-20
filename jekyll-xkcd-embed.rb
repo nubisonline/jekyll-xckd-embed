@@ -12,21 +12,21 @@ module Jekyll
 		end
 		
 		def render(context)
-			url = "http://xkcd.com/" + @number
+			url = "\"http://xkcd.com/" + @number + "\""
 			jsonUrl = "http://xkcd.com/" + @number + "/info.0.json"
 			resp = Net::HTTP.get_response(URI.parse(jsonUrl))			
 			
 			if resp.code == '404'
-				"<span><a href=\"" + url + "\">xkcd-" + @number + "</a></span>"
+				"<span><a href=" + url + ">xkcd-" + @number + "</a></span>"
 			else	
 				result = JSON.parse(resp.body)
 				"<figure class=\"xkcd-embed\">
-					<a href=\"" + url + "\">" + 
+					<a href=" + url + ">" + 
 						"<img" + 
-							"src=\"" + result["img"] + "\"" + 
-							"title=\"" + CGI::escapeHTML(result["alt"]) + "\"" + 
-							"alt=\"" + url + 
-						"\">" +
+							" src=\"" + result["img"] + "\"" + 
+							" title=\"" + CGI::escapeHTML(result["alt"]) + "\"" + 
+							" alt=" + url + 
+						">" +
 					"</a>" + 
 					"<figcaption>" +
 						"\"" + CGI::escapeHTML(result["title"]) + "\" - created by <a href=\"http://xkcd.com\">xkcd</a>" + 
